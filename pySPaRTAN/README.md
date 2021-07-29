@@ -8,7 +8,7 @@ To construct the TF – target gene prior matrix, we downloaded a gene set resou
 Sample datasets used in our study can be downloaded from http://www.pitt.edu/~xim33/SPaRTAN 
 
 ## System requirements
-Besides python standard library packages (i.e. argparse, functools, etc.), pySPaRTAN requires some other package from PyPI repository, such as pandas, numpy, sklearn, scipy, and matplotlib. In order to improve the running time performance, we converted some computationally intensive python functions into two Cython modules which, are platform dependent. We have built Cython extensions for Window, Mac, and Linux system, which are .pyd for Windows and .so files for Mac and Linux. You can also build Cython extensions onsite by running setup.py file, which is also explained in this tutorial. 
+The code was generated in python 3.7. Besides python installation, some other packages from PyPI repository, such as pandas, numpy, sklearn, scipy, and matplotlib need to be installed additionaly. In order to improve the running time performance, we converted some computationally intensive python functions into two Cython modules which are platform dependent. We have built those Cython extensions for Window(.pyd files), Mac(.so files), and Linux system(.so files) respectivly. Cython extensions can be built onsite as well by running setup.py file, which is explained in the section "Cython extension compilation". 
 
 ## Installation
 Download the reporsitory from https://github.com/osmanbeyoglulab/SPaRTAN
@@ -41,7 +41,7 @@ After installing Cython and C compiler, navigate to the directory pySPaRTAN and 
 ```sh
 python setup.py build_ext --inplace
 ```
-This generates new Cython extension .so files (or .pyd files on Windows). The previously downloaded .so and .pyd files are renamed to "*_old.so" and "*_old.pyd" 
+This will generate new Cython extension .so files (or .pyd files on Windows). The previously downloaded .so and .pyd files are renamed to "*_old.so" and "*_old.pyd" 
 
 ## Usage
 
@@ -77,12 +77,12 @@ pySPaRTAN model has 2 hyperparameters that can be tuned with model training: lam
     rsL2 : float > 0, default=0.001
            ridge regularization for linear regression
 
-We can run pySPaRTAN by specifying some values to those hyperparameters or using default values in the script.
-We can also use cross-validation to find the optional values of those hyperparameters for the input datasets, and then run pySPaRTAN to generate the projections.
+We can run pySPaRTAN by giving some specific values to those hyperparameters or using default setting in the script.
+We can also use cross-validation to find the optional values of those hyperparameters for the input datasets, and then run pySPaRTAN to generate the projection outputs.
 
 **Command line**
 
-To run pySPaRTAN module, We can simply execute the command to generate outputs using default parameters
+To run pySPaRTAN module with default parameters, simply execute the following command to generate outputs 
 ```sh
 python run_pySPaRTAN.py
 ```
