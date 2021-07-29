@@ -1,3 +1,10 @@
+
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# =============================================================================
+# Created By  : Xiaojun Ma
+# Created Date: Mar 18 10:54:00 PDT 2020
+# =============================================================================
 """
 This script contains the major class of SPaRTAN model and its dependencies.
 
@@ -16,8 +23,6 @@ This file contains the following classes and functions
     function normalize_column(): perform l2 normalization column-wize of given matrix
 
 """
-
-
 import numpy as np
 import cythKronPlus as krnP
 import cythLeastR as leastR
