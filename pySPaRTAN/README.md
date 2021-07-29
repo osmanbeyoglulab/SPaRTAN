@@ -78,7 +78,7 @@ pySPaRTAN model has 2 hyperparameters: lamda and rsL2
            ridge regularization for linear regression
 
 We can run pySPaRTAN by giving some specific values to those hyperparameters or using default setting in the script.
-We can also use cross-validation to find the optional values of those hyperparameters for the input datasets, and then run pySPaRTAN to generate the projection outputs.
+We can also use cross-validation to find the optional values of those hyperparameters for the input datasets, and then run pySPaRTAN to generate the projected outputs.
 
 **Command line**
 
