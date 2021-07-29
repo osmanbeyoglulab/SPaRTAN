@@ -20,7 +20,7 @@ Y = read.csv("../data/inputs/Ypbmc5kn_CD16.csv", row.names = 1) ##genes by cells
 D = read.csv("../data/inputs/Dpbmc.csv", row.names = 1) ##genes by transcription factors
 ##read SPaRTAN output
 #cell-type SPaRTAN-predicted TF activity
-TFa <- read.csv("../data/outputs/projD.csv", row.names = 1)
+TFa <- read.csv("../data/outputs/projD_pbmc5kn_CD16_0.001_0.001_pearson.csv", row.names = 1)
 scaledTFa <- scale(t(TFa))
 scaledP <- scale(P)
 
