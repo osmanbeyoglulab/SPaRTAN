@@ -94,12 +94,12 @@ File name of (gene X TF) dataframe.\n\
 Requires .csv format,\n\
 only contains file name, not include '.csv' extension",
                     type=str, default="Dpbmc")
-parser.add_argument("--dataset_P", help="string, default='Ppbmc5kn_CD8'\n\
+parser.add_argument("--dataset_P", help="string, default='Ppbmc5kn_CD16'\n\
 File name of (cell X protein) dataframe.\n\
 Requires .csv format,\n\
 only contains file name, not include '.csv' extension",
                     type=str, default="Ppbmc5kn_CD16")
-parser.add_argument("--dataset_Y", help="string, default='Ypbmc5kn_CD8'\n\
+parser.add_argument("--dataset_Y", help="string, default='Ypbmc5kn_CD16'\n\
 File name of (gene X cell) dataframe.\n\
 Requires .csv format,\n\
 only contains file name, not include '.csv' extension",
