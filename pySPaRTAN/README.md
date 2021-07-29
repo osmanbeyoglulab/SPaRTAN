@@ -8,7 +8,7 @@ To construct the TF – target gene prior matrix, we downloaded a gene set resou
 Sample datasets used in our study can be downloaded from http://www.pitt.edu/~xim33/SPaRTAN 
 
 ## System requirements
-The code was generated in python 3.7. Besides python installation, some other packages from PyPI repository, such as pandas, numpy, sklearn, scipy, and matplotlib need to be installed additionaly. In order to improve the running time performance, we converted some computationally intensive python functions into two Cython modules which are platform dependent. We have built those Cython extensions for Window(.pyd files), Mac(.so files), and Linux system(.so files) respectivly. Cython extensions can be built onsite as well by running setup.py file, which is explained in the section "Cython extension compilation". 
+The code was generated in python 3.7. Besides python installation, some other packages from PyPI repository, such as pandas, numpy, sklearn, scipy, and matplotlib need to be installed additionaly. In order to improve the running time performance, we converted some computationally intensive python functions into two Cython modules which are platform dependent. We have built those Cython extensions for Window(.pyd files), Mac(.so files), and Linux system(.so files) respectivly. Cython extensions can be built onsite as well, which is explained in the section "Cython extension compilation". 
 
 ## Installation
 Download the reporsitory from https://github.com/osmanbeyoglulab/SPaRTAN
