@@ -69,7 +69,7 @@ projP: dataframe of shape (S, M)
 
 **Hyperparameters**
 
-pySPaRTAN model has 2 hyperparameters that can be tuned with model training: lamda and rsL2
+pySPaRTAN model has 2 hyperparameters: lamda and rsL2
 
     lamda : float > 0, default=0.001
             LASSO regularization for linear regression 
