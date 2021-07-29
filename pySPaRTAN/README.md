@@ -29,7 +29,7 @@ Our codes have been tested on Linux, Mac, and Windows systems. Please see Prereq
 
 ### Cython extension compilation
 
-If the Cython extensions, which are platform-dependent binary modules, are not compatible with your operating system. You need to build the extensions on your own machine. 
+If the Cython extensions, which are platform-dependent binary modules, are not compatible with your operating system, additional built of those Cython extensions are needed on your own machine. 
 
 First, install Cython by running the command
 ```sh
