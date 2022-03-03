@@ -30,7 +30,7 @@ import scipy.linalg
 import functools
 import time
 import gc
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 from scipy import stats
 
 class Timer:
@@ -260,7 +260,7 @@ class pySPaRTAN:
         self.Y_pred = aff_rec
         return self.Y_pred
 
-    def get_corr(self, Y_pred, Y_test, plot=False):
+    def get_corr(self, Y_pred, Y_test):#, plot=False):
         """ get the correlation between predicted Y_pred and Y_test
         
         Parameters
@@ -270,7 +270,7 @@ class pySPaRTAN:
                 
         Y_test: array of shape (N, Mtest)
                gene expression test data with N genes and Mtest cells
-        plot: whether to plot the correlation between Y_pred and Y_test, default is False
+       # plot: whether to plot the correlation between Y_pred and Y_test, default is False
         
         
         Returns
@@ -284,10 +284,10 @@ class pySPaRTAN:
         else:
             corr = stats.pearsonr(Y_test.ravel(order='F'), Y_pred.ravel(order='F'))[0]                           
 
-        if plot:
-            plt.plot(Y_test.ravel(order='F'), Y_pred.ravel(order='F'),
-                     linestyle='none', marker='+')
-            plt.title('reconstruction of Y test, corr={:.2f}'.format(corr))
+#         if plot:
+#             plt.plot(Y_test.ravel(order='F'), Y_pred.ravel(order='F'),
+#                      linestyle='none', marker='+')
+#             plt.title('reconstruction of Y test, corr={:.2f}'.format(corr))
 
         return corr
 
