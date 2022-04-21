@@ -13,7 +13,7 @@ The code was generated in python 3.7. Besides python installation, some other pa
 ## Installation
 Download the reporsitory from https://github.com/osmanbeyoglulab/SPaRTAN
 
-Install python3.7 or later. pySpaRTAN used the following dependencies as well: pandas, numpy, scipy, sklearn, matplotlib. 
+Install python3.7 or later. pySpaRTAN used the following dependencies: pandas, numpy, scipy, sklearn, matplotlib. 
 
 You can install python dependencies by the following commands:
 ```sh
