@@ -194,7 +194,7 @@ class pySPaRTAN:
         L, Yv = krnP.removeDiagC(L, Yv, diag)
 
         opts = dict()
-        opts['rsL2'] = 0
+        opts['rsL2'] = rsL2
 
         # reshape Yv to 2darry
         Yv = Yv.reshape(Yv.shape[0], 1)
