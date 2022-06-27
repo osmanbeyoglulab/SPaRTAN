@@ -161,7 +161,7 @@ if fold != 0:  # using cross validation to determine the optimal parameters
     lenlamdas = len(lamdas)
     lenrsL2s = len(rsL2s)
     
-    corr_all_spearman = np.zeros((lenlamdas, lenrsL2s))
+    corr_all = np.zeros((lenlamdas, lenrsL2s))
 
     for l in range(0, lenlamdas):
         for r in range(0, lenrsL2s):
@@ -194,12 +194,12 @@ if fold != 0:  # using cross validation to determine the optimal parameters
                 Y_pred_all[:,test_index] = Y_pred
 
 
-            corr_spearman = reg.get_corr(Y_pred_all, Y_mat)
-            corr_all_spearman[l, r] = corr_spearman
+            corr = reg.get_corr(Y_pred_all, Y_mat)
+            corr_all[l, r] = corr
 
     # retrive the best parameters
     max_l, max_r = np.unravel_index(
-        corr_all_spearman.argmax(), corr_all_spearman.shape
+        corr_all.argmax(), corr_all.shape
     )
     
     lamda_best = lamdas[max_l]
