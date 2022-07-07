@@ -178,12 +178,14 @@ if fold != 0:  # using cross validation to determine the optimal parameters
                 Y_train, Y_test = Y_mat[:, train_index], Y_mat[:, test_index]
 
                 # normalize the train and test set
-                Y_train = normalize(Y_train, axis=0)
-                Y_test = normalize(Y_test, axis=0)
+                if args.normalization != "":
+                    Y_train = normalize(Y_train, axis=0)
+                    Y_test = normalize(Y_test, axis=0)
 
-                P_train = normalize(P_train, axis=1)
-                P_test = normalize(P_test, axis=1)
+                    P_train = normalize(P_train, axis=1)
+                    P_test = normalize(P_test, axis=1)
 
+                    
                 # train the model
                 reg.fit(D_mat, P_train, Y_train, lamdas[l], rsL2s[r], args.correlation)
 
