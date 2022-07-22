@@ -1,0 +1,2 @@
+recursive-include pySPaRTAN/cythKronPlus
+recursive-include pySPaRTAN/cythLeastR
