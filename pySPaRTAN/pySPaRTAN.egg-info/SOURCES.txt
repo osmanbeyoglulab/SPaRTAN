@@ -1,0 +1,7 @@
+README.md
+setup.py
+pySPaRTAN.egg-info/PKG-INFO
+pySPaRTAN.egg-info/SOURCES.txt
+pySPaRTAN.egg-info/dependency_links.txt
+pySPaRTAN.egg-info/not-zip-safe
+pySPaRTAN.egg-info/top_level.txt
