@@ -2,3 +2,6 @@
 /pySPaRTAN/build/
 /pySPaRTAN/dist/
 /pySPaRTAN/pySPaRTAN.egg-info/
+/.idea/
+/notebooks/.ipynb_checkpoints
+/notebooks/old_code.ipynb
