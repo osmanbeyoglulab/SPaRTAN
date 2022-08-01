@@ -12,6 +12,20 @@ def tf_dotplot(adata,
                color="tf",
                size="tf_sig"
                ):
+    '''
+
+    Parameters
+    ----------
+    adata
+    tfs_to_plot
+    group
+    color
+    size
+
+    Returns
+    -------
+
+    '''
 
     if type(tfs_to_plot) is int:
         n=tfs_to_plot
@@ -50,6 +64,19 @@ def tf_dotplot(adata,
                borderaxespad=0)
 
 def tf_protien_line_plot(tf_protein, protein, title=None, n_labels=8 ):
+    '''
+
+    Parameters
+    ----------
+    tf_protein
+    protein
+    title
+    n_labels
+
+    Returns
+    -------
+
+    '''
     cors=tf_protein[protein]
     fig, ax = plt.subplots(figsize= (12,9))
 
@@ -74,23 +101,7 @@ def tf_protien_line_plot(tf_protein, protein, title=None, n_labels=8 ):
         text = cors.index[np.argsort(cors)[x]]
         TEXTS.append(ax.text(260, y_text, text, fontsize=14))
 
-    # Adjust text position and add arrows ----------------------------
-    # 'expand_points' is a tuple with two multipliers by which to expand
-    # the bounding box of texts when repelling them from points
 
-    # 'arrowprops' receives a dictionary with all the properties we want
-    # for the arrows
-    # adjust_text(
-    #     TEXTS,
-    #     expand_points=(3,3),
-    #     arrowprops=dict(
-    #         arrowstyle="->",
-    #         lw=2,
-    #         color='b',
-    #         alpha=0.5
-    #     ),
-    #     ax=fig.axes[0]
-    # )
     ax.set_ylabel("Correlation", fontdict={"size": 16})
     ax.set_xlabel("Transcription Factor", fontdict={"size": 16})
     ax.set_title(title,fontdict={"size": 18})

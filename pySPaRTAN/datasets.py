@@ -5,9 +5,56 @@ import numpy as np
 
 
 def load_dorthea():
+    '''
+
+    Returns
+    -------
+    TF-gene interaction matrix used in the tutorial.rst and Nucleic Acids Research publication.
+    '''
+
     #return pd.read_csv("https://raw.githubusercontent.com/osmanbeyoglulab/SPaRTAN/main/data/GenevsTF_SPaRTAN_sample.csv", index_col=0)
     return pd.read_csv(pd.read_csv("https://sites.pitt.edu/~xim33/data/SPaRTAN_input/D_pbmc.csv", index_col=0))
+
+def load_tf_gene(adata=None, database="DoRothEA", expression_cutoff=0.001, min_genes_per_tf=10, max_jac_sim=0.8):
+    '''
+
+    Parameters
+    ----------
+    adata : AnnData, optional
+        AnnData object containing gene expression.  Used to filter TFs that are not expressed in mRNA
+    database : {"DoRothEA", "hTFtarget"}
+        Name of database to use.  Default is "DoRothEA"
+    expression_cutoff : float, optional
+        Threshold to use for filtering TFs not expressed in adata.  If `adata` is specified, TFs with mean mRNA expression
+        in the adata object less than `expression_cutoff` will be filtered out.
+    min_genes_per_tf : int, optional
+        TFs with less than this many target genes are filtered out.
+    max_jac_sim : float, optional
+        Pairs or groups of TFs that all have jacard similarity higher than `max_jac_sim` are merged together.
+
+
+    Returns
+    -------
+    TF-gene interaction matrix
+    '''
+
+
+
 def pbmc(ct):
+    '''
+    Retreive AnnData object containing pre-processed data for PBMC dataset.
+
+    Parameters
+    ----------
+    ct : {'B', 'CD4mem', 'CD4nav', 'CD8', 'CD14+MONO', 'CD16+MONO', 'DC', 'NK'}
+        Cell type for which data is obtained
+
+    Returns
+    -------
+    adata : AnnData
+        PBMC data for cell type `ct`
+    '''
+
     dataset_D="D_pbmc"
     dataset_P="Ppbmc5kNextGEM_"+ct
     dataset_Y="Ypbmc5kNextGEM_"+ct

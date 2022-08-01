@@ -23,7 +23,6 @@ This file contains the following classes and functions
     function normalize_column(): perform l2 normalization column-wize of given matrix
 
 """
-import numpy as np
 import cythKronPlus as krnP
 import cythLeastR as leastR
 import scipy.linalg, scipy.sparse
@@ -71,8 +70,20 @@ class SPaRTAN:
     get_projD(self, P=None):
         get projected TF activity
     """
-    def __init__(self, lamda=0.01, alpha=0.5, corrtype='pearson',grid_search_steps=10, n_folds=5, verbose=False, solver="SVD", spectrum=0.7):
-        ''''''
+    def __init__(self, lamda=0.01, alpha=0.5, corrtype='pearson',grid_search_steps=10, n_folds=5, verbose=False, solver="Kron", spectrum=0.7):
+        '''
+
+        Parameters
+        ----------
+        lamda
+        alpha
+        corrtype
+        grid_search_steps
+        n_folds
+        verbose
+        solver
+        spectrum
+        '''
         self.protein_key=None
         self.gene_key=None
 
@@ -379,6 +390,18 @@ class SPaRTAN:
     #     def get_tf_activity(self, adata=None, P=None):
     #         pass
     def get_tf_protein_cor(self,P=None):
+        '''
+        Finds correlation between TFs and surface proteins
+        Parameters
+        ----------
+        P : array_like, optional
+            Protein expression matrix to use for correlations, if different from training data.
+
+        Returns
+        -------
+        X : pd.DataFrame
+            Correlation matrix between TFs and surface proteins.
+        '''
         if P is None:
             P=self.P
         tf_activity=self.get_projD(P)
