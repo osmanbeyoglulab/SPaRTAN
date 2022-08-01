@@ -24,8 +24,8 @@ This file contains the following classes and functions
 
 """
 import numpy as np
-import pySPaRTAN.cythKronPlus as krnP
-import pySPaRTAN.cythLeastR as leastR
+import cythKronPlus as krnP
+import cythLeastR as leastR
 import scipy.linalg, scipy.sparse
 import gc
 from copy import deepcopy
@@ -258,6 +258,22 @@ class SPaRTAN:
         return self.Y_pred.T
 
     def score(self,adata=None, P=None, Y=None):
+        '''
+        evaluate the models ability to predict gene expression based on protien expression
+
+        Parameters
+        ----------
+        adata: AnnData object containing the (normalized) gene and surface protein expression
+                data used to test the model.  If `None`, protein and gene expression matrices are given by P and Y.
+        P: either a string specifying the key in `adata.obsm` corresponding to the normalized protein expression matrix,
+            or a DataFrame or np array containing the normalized protein expression data.
+        Y: either a string specifying the key in `adata.layers` corresponding to the normalized gene expression matrix,
+            or a DataFrame or np array containing the normalized gene expression data.
+
+        Returns
+        -------
+        the correlation between predicted and true gene expression.
+        '''
         if adata is not None:
             P=adata.obsm[self.protein_key]
             Y=adata.layers[self.gene_key]
@@ -267,7 +283,12 @@ class SPaRTAN:
 
         Y_pred=self.predict(P)
 
-        return self.corr(Y_pred.flatten(), Y.flatten())[0]
+        #If the predicted gene expression is a constant, then return a score of zero
+        if np.std(Y_pred.flatten())==0:
+            return 0
+        #otherwise, return the correlation between the true and test vectors.
+        else:
+            return self.corr(Y_pred.flatten(), Y.flatten())[0]
 
     def get_W(self):
         # get coefficient matrix
@@ -291,7 +312,9 @@ class SPaRTAN:
             Y = self.Y
         W = self.W
         return (Y.T @ self.D @ W).T
-
+    def get_TF_activity(self, P=None, n_trials=0, verbose=False):
+        return self.get_projD(self, P=P, n_trials=n_trials, verbose=verbose)
+    
     def get_projD(self, P=None, n_trials=0, verbose=False):
         """ get projected TF activity
         Parameters

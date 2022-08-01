@@ -13,6 +13,13 @@ def tf_dotplot(adata,
                size="tf_sig"
                ):
 
+    if type(tfs_to_plot) is int:
+        n=tfs_to_plot
+        tfs_to_plot=[]
+        for ct in np.unique(adata.obs[group]):
+            tfs_to_plot+=adata[adata.obs[group]==ct].obsm[size].mean().sort_values(ascending=False).head(n).index.tolist()
+        tfs_to_plot=np.unique(tfs_to_plot)
+
     color_df=adata.obsm[color].groupby(adata.obs[group]).mean()
     size_df=adata.obsm[size].groupby(adata.obs[group]).mean()
 
@@ -41,7 +48,8 @@ def tf_dotplot(adata,
     plt.legend(bbox_to_anchor=(1.05,1),
                loc='upper left',
                borderaxespad=0)
-def tf_protien_line_plot(tf_protein, protein, title=None, cutoff=0.8 ):
+
+def tf_protien_line_plot(tf_protein, protein, title=None, n_labels=8 ):
     cors=tf_protein[protein]
     fig, ax = plt.subplots(figsize= (12,9))
 
@@ -50,14 +58,21 @@ def tf_protien_line_plot(tf_protein, protein, title=None, cutoff=0.8 ):
     )
 
     TEXTS = []
-    for i in range(len(cors)):
+    y_point=[]
+    for i in range(n_labels):
+        x = i
+        y_text = -1+0.07*i
+        y_point.append(cors[np.argsort(cors)[i]])
+        text = cors.index[np.argsort(cors)[i]]
+        TEXTS.append(ax.text(-20, y_text, text, fontsize=14))
+        #plt.arrow(-20, y_text, 20-x, -y_text+cors[np.argsort(cors)[i]])
 
-        if abs(cors.iloc[i])>cutoff:
-            x = rankdata(cors.to_list())[i]
-            y = cors.iloc[i]
-            text = cors.index[i]
-            TEXTS.append(ax.text(x, y, text, fontsize=16, fontname="Poppins"))
-
+    for i in range(n_labels):
+        x = len(cors)-i-1
+        y_text = 1-0.07*i
+        y_point.append(cors[np.argsort(cors)[x]])
+        text = cors.index[np.argsort(cors)[x]]
+        TEXTS.append(ax.text(260, y_text, text, fontsize=14))
 
     # Adjust text position and add arrows ----------------------------
     # 'expand_points' is a tuple with two multipliers by which to expand
@@ -65,23 +80,22 @@ def tf_protien_line_plot(tf_protein, protein, title=None, cutoff=0.8 ):
 
     # 'arrowprops' receives a dictionary with all the properties we want
     # for the arrows
-    adjust_text(
-        TEXTS,
-        expand_points=(3,3),
-        arrowprops=dict(
-            arrowstyle="->",
-            lw=2,
-            color='b',
-            alpha=0.5
-        ),
-        only_move={ 'text':'y', 'objects':'y'},
-        force_text=2,
-        ax=fig.axes[0]
-    )
+    # adjust_text(
+    #     TEXTS,
+    #     expand_points=(3,3),
+    #     arrowprops=dict(
+    #         arrowstyle="->",
+    #         lw=2,
+    #         color='b',
+    #         alpha=0.5
+    #     ),
+    #     ax=fig.axes[0]
+    # )
     ax.set_ylabel("Correlation", fontdict={"size": 16})
     ax.set_xlabel("Transcription Factor", fontdict={"size": 16})
     ax.set_title(title,fontdict={"size": 18})
 
+    plt.xlim(-20,300)
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14)
 

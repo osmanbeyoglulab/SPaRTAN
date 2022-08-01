@@ -5,8 +5,8 @@ import numpy as np
 
 
 def load_dorthea():
-    return pd.read_csv("https://raw.githubusercontent.com/osmanbeyoglulab/SPaRTAN/main/data/GenevsTF_SPaRTAN_sample.csv", index_col=0)
-
+    #return pd.read_csv("https://raw.githubusercontent.com/osmanbeyoglulab/SPaRTAN/main/data/GenevsTF_SPaRTAN_sample.csv", index_col=0)
+    return pd.read_csv(pd.read_csv("https://sites.pitt.edu/~xim33/data/SPaRTAN_input/D_pbmc.csv", index_col=0))
 def pbmc(ct):
     dataset_D="D_pbmc"
     dataset_P="Ppbmc5kNextGEM_"+ct

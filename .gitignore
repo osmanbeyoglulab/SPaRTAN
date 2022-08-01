@@ -6,3 +6,5 @@
 /notebooks/.ipynb_checkpoints
 /notebooks/old_code.ipynb
 /Archive/
+/pySPaRTAN.egg-info/
+/build/
