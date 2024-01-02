@@ -18,7 +18,6 @@ Install python3.7 or later. pySpaRTAN used the following dependencies: pandas, n
 You can install python dependencies by the following commands:
 ```sh
 pip install pandas
-pip install numpy
 pip install scipy
 pip install -U scikit-learn
 pip install matplotlib
